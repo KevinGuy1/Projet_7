@@ -5,7 +5,7 @@ const path = require("path");
 require(`dotenv`).config({ path: `./config/.env` });
 
 // importation des routes
-// const sauceRoutes = require('./routes/sauce');
+const postRoutes = require("./routes/post");
 const userRoutes = require("./routes/user");
 
 const app = express();
@@ -21,7 +21,7 @@ mongoose
 
 // Requêtes autorisées
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
@@ -37,7 +37,7 @@ app.use(express.json());
 
 // Redirection de la requête
 app.use("/api/auth", userRoutes);
-//   app.use('/api/sauces', sauceRoutes);
+app.use("/api/posts", postRoutes);
 //   app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;

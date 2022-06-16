@@ -8,5 +8,6 @@ const userCtrl = require("../controllers/user");
 // Mise en place des router pour les requêtes signup et login
 router.post("/signup", userCtrl.signup);
 router.post("/login", userCtrl.login);
+router.get("/logout", userCtrl.logout);
 
 module.exports = router;

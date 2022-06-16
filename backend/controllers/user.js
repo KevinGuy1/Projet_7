@@ -1,6 +1,7 @@
 // Importation des fonctions installées
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { render } = require("../app");
 // Importation de la route du model
 const User = require("../models/User");
 
@@ -11,6 +12,7 @@ exports.signup = (req, res, next) => {
     // On crée un nouvel utilisateur avec le mdp hashé
     .then((hash) => {
       const user = new User({
+        pseudo: req.body.pseudo,
         email: req.body.email,
         password: hash,
       });
@@ -50,4 +52,9 @@ exports.login = (req, res, next) => {
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
+};
+
+module.exports.logout = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
 };
