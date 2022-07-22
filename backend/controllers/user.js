@@ -1,7 +1,6 @@
 // Importation des fonctions installées
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { render } = require("../app");
 // Importation de la route du model
 const User = require("../models/User");
 
@@ -43,6 +42,7 @@ exports.login = (req, res, next) => {
           }
           // Si il est valide on renvoie l'identifiant avec un token de connexion
           res.status(200).json({
+            pseudo: user.pseudo,
             userId: user._id,
             token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
               expiresIn: "24h",

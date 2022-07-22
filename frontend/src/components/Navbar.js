@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { UidContext } from "./AppContext";
 import Logout from "./Log/Logout";
+import { useStore } from "./Store";
 
 const Navbar = () => {
-  const uid = useContext(UidContext);
+  const token = useStore((state) => state.token);
 
   return (
     <nav>
@@ -19,14 +19,16 @@ const Navbar = () => {
             </div>
           </NavLink>
         </div>
-        {uid ? (
-          <ul>
-            <li className="welcome">
-              <h5>Bienvenue !</h5>
-            </li>
-            <Logout />
-          </ul>
-        ) : null}
+        {token
+          // Si token afficher bienvenue et deco sinon null
+          ? (
+            <ul>
+              <li className="welcome">
+                <h5>Bienvenue !</h5>
+              </li>
+              <Logout />
+            </ul>
+          ) : null}
       </div>
     </nav>
   );

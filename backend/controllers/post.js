@@ -1,9 +1,6 @@
-const postModel = require("../models/post");
+const asyncHandler = require("express-async-handler");
+const createError = require("http-errors");
 const PostModel = require("../models/post");
-const UserModel = require("../models/User");
-const userModel = require("../models/User");
-const { uploadErrors } = require("../utils/errors.js");
-const ObjectID = require("mongoose").Types.ObjectId;
 const fs = require("fs");
 
 exports.getAllPosts = (req, res, next) => {
@@ -19,10 +16,10 @@ exports.getAllPosts = (req, res, next) => {
     });
 };
 
-module.exports.createPost = async (req, res) => {
+module.exports.createPost = asyncHandler(async (req, res, next) => {
+  if (!req.body.post) return next(createError(400, "missing post param"));
   // On récupère les données au bon format
-  const postObject = JSON.parse(req.body.post);
-  delete postObject._id;
+  const postObject = req.body.post;
   // Création du produit
   const newpost = new PostModel({
     ...postObject,
@@ -33,12 +30,13 @@ module.exports.createPost = async (req, res) => {
     likes: 0,
     usersLiked: [" "],
   });
+  console.log(newpost);
   // Sauvegarde du produit dans la base de donnée qui renvoie un changement de status et la réponse que le produit est bien enregistré
   newpost
     .save()
     .then(() => res.status(201).json({ message: "Objet enregistré !" }))
     .catch((error) => res.status(400).json({ error }));
-};
+});
 
 exports.modifyPost = async (req, res, next) => {
   PostModel.findOne({ _id: req.params.id })

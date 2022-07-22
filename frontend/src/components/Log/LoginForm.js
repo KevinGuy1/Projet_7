@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useStore } from "../Store";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setPseudo, setToken, setUserId } = useStore();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,7 +15,6 @@ const SignInForm = () => {
     axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}api/auth/login`,
-      withCredentials: true,
       data: {
         email,
         password,
@@ -26,6 +27,10 @@ const SignInForm = () => {
           passwordError.innerHTML = res.data.errors.password;
         } else {
           window.location = "/";
+
+          setPseudo(res.data.pseudo);
+          setToken(res.data.token);
+          setUserId(res.data.userId);
         }
       })
       .catch((err) => {
