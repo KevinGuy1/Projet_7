@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 // Importation de la route du model
 const User = require("../models/User");
 
+
+const maxAge = 24 * 60 * 60;
+
 exports.signup = (req, res, next) => {
   // On crypt la mdp de la requête
   bcrypt
@@ -41,12 +44,16 @@ exports.login = (req, res, next) => {
             return res.status(401).json({ error: "Mot de passe incorrect !" });
           }
           // Si il est valide on renvoie l'identifiant avec un token de connexion
+          const token = jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+            expiresIn: maxAge
+          });
           res.status(200).json({
             pseudo: user.pseudo,
             userId: user._id,
-            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-              expiresIn: "24h",
-            }),
+            token,
+            // token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+            //   expiresIn: maxAge,
+            // }),
           });
         })
         .catch((error) => res.status(500).json({ error }));

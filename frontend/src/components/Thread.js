@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "./Post/Post";
-import { useStore } from "./Store";
-
+import Cookies from 'js-cookie';
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
-  const token = useStore((state) => state.token);
+  const token = Cookies.get('token');
 
 
   useEffect(() => {

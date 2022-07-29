@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Cookies from 'universal-cookie';
 import { useStore } from "../Store";
 
 const CreatePost = ({ posts, setPosts }) => {
@@ -29,7 +28,7 @@ const CreatePost = ({ posts, setPosts }) => {
           body: {
             post: {
               userId: userId,
-              message: input,
+              message: input
               // imageUrl: récuperer l'image,
             }
           },

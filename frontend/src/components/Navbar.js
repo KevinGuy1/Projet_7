@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import Logout from "./Log/Logout";
+import Cookies from 'js-cookie';
 import { useStore } from "./Store";
 
+
 const Navbar = () => {
-  const token = useStore((state) => state.token);
+  const token = Cookies.get('token');
+  const pseudo = useStore((state) => state.pseudo);
+
 
   return (
     <nav>
@@ -24,7 +28,7 @@ const Navbar = () => {
           ? (
             <ul>
               <li className="welcome">
-                <h5>Bienvenue !</h5>
+                <h5>Bienvenue {pseudo} !!</h5>
               </li>
               <Logout />
             </ul>

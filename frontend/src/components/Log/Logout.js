@@ -13,12 +13,12 @@ const Logout = () => {
     await axios({
       method: "get",
       url: `${process.env.REACT_APP_API_URL}api/auth/logout`,
-      withCredentials: true,
+      // withCredentials: true,
     })
       .then(() => removeCookie("jwt"))
       .catch((err) => console.log(err));
 
-    window.location = "/";
+    window.location = "/connexion";
   };
 
   return (

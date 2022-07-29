@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useStore } from "../Store";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setPseudo, setToken, setUserId } = useStore();
+  const { setCurrentUser } = useStore();
+  let navigate = useNavigate();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,14 +27,15 @@ const SignInForm = () => {
       .then((res) => {
         console.log(res);
         if (res.data.errors) {
+          // TO DO backend faire l'envoie d'erreur
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          window.location = "/";
-
-          setPseudo(res.data.pseudo);
-          setToken(res.data.token);
-          setUserId(res.data.userId);
+          setCurrentUser(res.data.pseudo, res.data.userId, res.data.token);
+          const maxAge = 60 * 60 * 1000;
+          const cookies = new Cookies();
+          cookies.set('token', res.data.token, { httpOnly: false, maxAge });
+          navigate("/");
         }
       })
       .catch((err) => {
