@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useStore } from "../Store";
+import { userStore } from "../Store";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setCurrentUser } = useStore();
+  const { setCurrentUser } = userStore();
   let navigate = useNavigate();
 
 
@@ -34,7 +34,7 @@ const SignInForm = () => {
           setCurrentUser(res.data.pseudo, res.data.userId, res.data.token);
           const maxAge = 60 * 60 * 1000;
           const cookies = new Cookies();
-          cookies.set('token', res.data.token, { httpOnly: false, maxAge });
+          cookies.set('token', res.data.token, { httpOnly: false }, maxAge);
           navigate("/");
         }
       })

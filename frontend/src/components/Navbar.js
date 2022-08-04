@@ -2,12 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logout from "./Log/Logout";
 import Cookies from 'js-cookie';
-import { useStore } from "./Store";
+import { userStore } from "./Store";
 
 
 const Navbar = () => {
   const token = Cookies.get('token');
-  const pseudo = useStore((state) => state.pseudo);
+  const pseudo = userStore((state) => state.pseudo);
 
 
   return (

@@ -51,9 +51,6 @@ exports.login = (req, res, next) => {
             pseudo: user.pseudo,
             userId: user._id,
             token,
-            // token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
-            //   expiresIn: maxAge,
-            // }),
           });
         })
         .catch((error) => res.status(500).json({ error }));
@@ -61,7 +58,4 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-module.exports.logout = (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
-  res.redirect("/");
-};
+

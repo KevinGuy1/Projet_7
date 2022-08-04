@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useStore } from "../Store";
+import { userStore } from "../Store";
 
 const CreatePost = ({ posts, setPosts }) => {
   const [input, setInput] = useState("");
   // const [image, setImage] = useState("");
-  const token = useStore((state) => state.token);
-  const userId = useStore((state) => state.userId);
-  const pseudo = useStore((state) => state.pseudo);
+  const token = userStore((state) => state.token);
+  const userId = userStore((state) => state.userId);
+  const pseudo = userStore((state) => state.pseudo);
 
   const handleChange = (e) => {
     setInput(e.target.value);

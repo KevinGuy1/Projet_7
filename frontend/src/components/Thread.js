@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "./Post/Post";
 import Cookies from 'js-cookie';
+import NewPostForm from "../components/Post/NewPostForm";
 
-const Feed = () => {
+
+const Thread = () => {
   const [posts, setPosts] = useState([]);
   const token = Cookies.get('token');
 
@@ -25,10 +27,12 @@ const Feed = () => {
       // to do declencher un alerte
     }
     fetchPost();
-  }, [token]);
+  }, [token, setPosts]);
+
 
   return (
     <div className="feed">
+      <NewPostForm posts={posts} setPosts={setPosts} />
       {posts.map((post) => (
         <Post key={post._id} post={post} />
       ))}
@@ -36,4 +40,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default Thread;
