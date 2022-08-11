@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { dateParser } from "../Utils";
 import { userStore } from "../Store";
-
+import DeletePost from "./DeletePost";
+import LikeButton from "./LikeButton";
 
 const Post = ({ post }) => {
   const [isUpdated, setIsUpdated] = useState(false);
@@ -10,7 +11,7 @@ const Post = ({ post }) => {
 
   const updateItem = () => {
     if (textUpdate) {
-      console.log("message mis à jour avec succès wallah")
+      console.log("message mis à jour avec succès")
     }
     setIsUpdated(false);
   };
@@ -49,13 +50,10 @@ const Post = ({ post }) => {
               {/* <img src="./img/icons/edit.svg" alt="edit" /> */}
               Modifier
             </div>
-            <div onClick={handleDelete}>
-
-            </div>
-            {/* <DeleteCard id={post._id} /> */}
-            Supprimer
+            <DeletePost id={post._id} />
           </div>
         )}
+        <LikeButton post={post} />
 
 
       </div>

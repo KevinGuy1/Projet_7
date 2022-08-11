@@ -22,7 +22,10 @@ const Thread = () => {
       let res = await axios(getAllPosts)
       console.log(res.data)
       if (res.status === 200) {
-        return setPosts(res.data)
+        const sortedPost = res.data.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt)
+        })
+        return setPosts(sortedPost)
       }
       // to do declencher un alerte
     }
