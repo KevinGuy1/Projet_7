@@ -101,14 +101,13 @@ const CreatePost = ({ posts, setPosts }) => {
           placeholder={`Quoi de neuf ?`} />
         {/* ajout img */}
         <div className="img-upload">
-          <img src="" alt="icone-img" />
+          <img src="./img/icons/picture.svg" alt="icons-img" />
           <input
             type="file"
             id="file-upload"
             name="file"
             accept=".jpg, .jpeg, .png"
             onChange={(e) => handleImg(e)} />
-
         </div>
         <button
           disabled={!input}

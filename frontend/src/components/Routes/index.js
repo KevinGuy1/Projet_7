@@ -4,7 +4,6 @@ import Home from "../../pages/Home";
 import Connexion from "../../pages/Connexion";
 import Navbar from "../Navbar";
 
-
 const index = () => {
   return (
     <div>

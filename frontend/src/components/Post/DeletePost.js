@@ -30,7 +30,7 @@ const DeletePost = ({ id }) => {
                 }
             }}
         >
-            <img src="" alt="Supprimer" />
+            <img src="./img/icons/trash.svg" alt="Supprimer" />
         </div>
     );
 };

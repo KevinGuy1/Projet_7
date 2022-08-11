@@ -1,7 +1,6 @@
 import React from "react";
 import Cookies from 'js-cookie';
 
-
 const Logout = () => {
 
   const logout = () => {
@@ -9,7 +8,6 @@ const Logout = () => {
     console.log("cookie supprimé")
     window.location = "/connexion";
   }
-
 
   return (
     <li onClick={logout}>

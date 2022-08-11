@@ -47,8 +47,7 @@ const Post = ({ post }) => {
         {userId === post.userId && (
           <div className="button-container">
             <div onClick={() => setIsUpdated(!isUpdated)}>
-              {/* <img src="./img/icons/edit.svg" alt="edit" /> */}
-              Modifier
+              <img src="./img/icons/edit.svg" alt="edit" />
             </div>
             <DeletePost id={post._id} />
           </div>
@@ -65,8 +64,3 @@ const Post = ({ post }) => {
 
 export default Post;
 
-
-
-// <p>{post.pseudo}</p>
-//       <p>{post.message}</p>
-//       <p>{post.createdAt}</p>
