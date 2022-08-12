@@ -34,7 +34,7 @@ const Thread = () => {
     <div className="feed">
       <NewPostForm posts={posts} setPosts={setPosts} />
       {posts.map((post) => (
-        <Post key={post._id} post={post} />
+        <Post key={post._id} post={post} setPosts={setPosts} />
       ))}
     </div>
   );

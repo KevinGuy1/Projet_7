@@ -19,13 +19,13 @@ const LikeButton = ({ post }) => {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
-                body: {
+                data: {
                     userId: userId,
                     like: like
                 }
             })
                 .then(function (response) {
-                    console.log("reponse like: " + response)
+                    console.log("reponse like: " + JSON.stringify(response.data))
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -47,13 +47,13 @@ const LikeButton = ({ post }) => {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
-                body: {
+                data: {
                     userId: userId,
                     like: like
                 }
             })
                 .then(function (response) {
-                    console.log("reponse unlike : " + response)
+                    console.log("reponse unlike : " + JSON.stringify(response.data))
                 })
                 .catch(function (error) {
                     console.log(error);

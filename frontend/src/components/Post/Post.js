@@ -3,17 +3,38 @@ import { dateParser } from "../Utils";
 import { userStore } from "../Store";
 import DeletePost from "./DeletePost";
 import LikeButton from "./LikeButton";
+import axios from "axios";
+import Cookies from 'js-cookie';
 
-const Post = ({ post }) => {
+
+const Post = ({ post, setPosts }) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
+  const pseudo = userStore((state) => state.pseudo);
   const userId = userStore((state) => state.userId);
+  const token = Cookies.get('token');
 
   const updateItem = () => {
     if (textUpdate) {
+      axios({
+        method: "PUT",
+        url: `${process.env.REACT_APP_API_URL}api/posts/${post._id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          post: JSON.stringify({
+            pseudo: pseudo,
+            userId: userId,
+            message: textUpdate,
+            // image: image
+          })
+        },
+      })
       console.log("message mis à jour avec succès")
     }
     setIsUpdated(false);
+    // setPosts();
   };
 
   return (

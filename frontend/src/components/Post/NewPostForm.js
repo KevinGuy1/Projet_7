@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { userStore } from "../Store";
 import axios from "axios";
+import Cookies from 'js-cookie';
+
 
 const CreatePost = ({ posts, setPosts }) => {
   const [input, setInput] = useState("");
   const [image, setImage] = useState("");
-  const token = userStore((state) => state.token);
+  const token = Cookies.get('token');
   const userId = userStore((state) => state.userId);
   const pseudo = userStore((state) => state.pseudo);
 
@@ -64,17 +66,17 @@ const CreatePost = ({ posts, setPosts }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          body: {
+          data: {
             post: JSON.stringify({
               pseudo: pseudo,
               userId: userId,
               message: input,
-              image: image
+              // image: image
             })
           },
         })
           .then(function (response) {
-            // const data = ;
+            // const data = response.data;
             console.log(response)
             // setPosts([data, ...posts]);
             setInput("");
