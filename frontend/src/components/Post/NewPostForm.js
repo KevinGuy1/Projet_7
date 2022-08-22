@@ -94,7 +94,7 @@ const CreatePost = ({ posts, setPosts }) => {
 
   return (
     <div className="createPost">
-      <div className="pseudo">{pseudo}</div>
+      <div className="pseudo"><h2>{pseudo}</h2></div>
       <form className="post-form" onSubmit={handleSubmit}>
         <textarea name="input"
           value={input}
@@ -111,7 +111,7 @@ const CreatePost = ({ posts, setPosts }) => {
             accept=".jpg, .jpeg, .png"
             onChange={(e) => handleImg(e)} />
         </div>
-        <button
+        <button className="btn-send"
           disabled={!input}
           type="submit"
         // onClick={postAlert}

@@ -16,14 +16,6 @@
     padding-top: 26px;
   }
 
-  .fa-spinner {
-    position: absolute;
-    top: 40%;
-    left: 49%;
-    font-size: 1.5rem;
-    color: $color-1;
-  }
-
   .card-left {
     img {
       height: 52px;
@@ -291,7 +283,7 @@
             cursor: pointer;
             transition: 0.2s;
             display: inline-block;
-            font-family: $font-3;
+            font-family: $font-1;
 
             &:hover {
               transform: scale(1.05);

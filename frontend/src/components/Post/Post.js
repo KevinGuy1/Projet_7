@@ -75,7 +75,6 @@ const Post = ({ post, setPosts }) => {
         )}
         <LikeButton post={post} />
 
-
       </div>
 
     </div>

@@ -1,4 +1,4 @@
-.post-container {
+.createPost {
   margin: 0 auto 0;
   padding: 16px 40px;
   border-radius: 20px;
@@ -9,23 +9,6 @@
     font-size: 1.5rem;
     margin: 20px 0;
     color: $color-3;
-  }
-
-  .data {
-    position: absolute;
-    right: 42px;
-    text-align: right;
-
-    @media screen and(max-width: 420px) {
-      right: 10px;
-    }
-    @media screen and(max-width: 380px) {
-      display: none;
-    }
-
-    span {
-      font-weight: bold;
-    }
   }
 
   .user-info {
@@ -156,7 +139,7 @@
         }
       }
       p {
-        font-family: $font-3;
+        font-family: $font-1;
         margin-top: 4px;
         color: red;
       }

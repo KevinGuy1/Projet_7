@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 
 const LikeButton = ({ post }) => {
+    const [count, setCount] = useState(post.likes)
     const [liked, setLiked] = useState(false);
     const userId = userStore((state) => state.userId);
     const token = Cookies.get('token');
@@ -26,6 +27,7 @@ const LikeButton = ({ post }) => {
             })
                 .then(function (response) {
                     console.log("reponse like: " + JSON.stringify(response.data))
+                    setCount(prevCount => prevCount + 1)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -54,6 +56,7 @@ const LikeButton = ({ post }) => {
             })
                 .then(function (response) {
                     console.log("reponse unlike : " + JSON.stringify(response.data))
+                    setCount(prevCount => prevCount - 1)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -65,10 +68,10 @@ const LikeButton = ({ post }) => {
         setLiked(false);
     };
 
-    // useEffect(() => {
-    //     if (post.usersLiked.includes(userId)) setLiked(true);
-    //     else setLiked(false);
-    // }, [userId, post.usersLiked, liked]);
+    useEffect(() => {
+        if (post.usersLiked.includes(userId)) setLiked(true);
+        else setLiked(false);
+    }, [userId, post.usersLiked]);
 
     return (
         <div className="like-container">
@@ -78,7 +81,7 @@ const LikeButton = ({ post }) => {
             {liked && (
                 <img src="./img/icons/heart-filled.svg" onClick={unlike} alt="unlike" />
             )}
-            <span>{post.likes}</span>
+            <span>{count}</span>
         </div>
     );
 };
