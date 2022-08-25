@@ -2,9 +2,8 @@ import React from "react";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-const DeletePost = ({ id }) => {
+const DeletePost = ({ id, setPosts }) => {
     const token = Cookies.get('token');
-    // console.log("props: " + id)
 
     const deleteQuote = async () => {
         try {
@@ -16,6 +15,27 @@ const DeletePost = ({ id }) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
+                .then(function (res) {
+                    console.log("deleteRes : " + JSON.stringify(res))
+                    async function fetchPost() {
+                        const getAllPosts = {
+                            method: 'get',
+                            url: `${process.env.REACT_APP_API_URL}api/posts`,
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        }
+                        let res = await axios(getAllPosts)
+                        console.log(res.data)
+                        if (res.status === 200) {
+                            const sortedPost = res.data.sort((a, b) => {
+                                return new Date(b.createdAt) - new Date(a.createdAt)
+                            })
+                            return setPosts(sortedPost)
+                        }
+                    }
+                    fetchPost();
+                })
+
+
         }
         catch (error) {
             console.log({ error });

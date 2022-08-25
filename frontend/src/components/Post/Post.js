@@ -27,14 +27,30 @@ const Post = ({ post, setPosts }) => {
             pseudo: pseudo,
             userId: userId,
             message: textUpdate,
-            // image: image
+            image: post.imageURL
           })
         },
       })
       console.log("message mis à jour avec succès")
     }
     setIsUpdated(false);
-    // setPosts();
+    // Actualisation du GET
+    async function fetchPost() {
+      const getAllPosts = {
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}api/posts`,
+        headers: { 'Authorization': `Bearer ${token}` }
+      }
+      let res = await axios(getAllPosts)
+      console.log(res.data)
+      if (res.status === 200) {
+        const sortedPost = res.data.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt)
+        })
+        return setPosts(sortedPost)
+      }
+    }
+    fetchPost();
   };
 
   return (
@@ -70,7 +86,7 @@ const Post = ({ post, setPosts }) => {
             <div onClick={() => setIsUpdated(!isUpdated)}>
               <img src="./img/icons/edit.svg" alt="edit" />
             </div>
-            <DeletePost id={post._id} />
+            <DeletePost id={post._id} setPosts={setPosts} />
           </div>
         )}
         <LikeButton post={post} />

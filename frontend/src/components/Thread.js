@@ -27,7 +27,7 @@ const Thread = () => {
       // to do declencher un alerte
     }
     fetchPost();
-  }, [token, setPosts]);
+  }, [token]);
 
 
   return (

@@ -3,8 +3,8 @@ import { userStore } from "../Store";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-
 const CreatePost = ({ posts, setPosts }) => {
+
   const [input, setInput] = useState("");
   const [image, setImage] = useState("");
   const token = Cookies.get('token');
@@ -76,9 +76,24 @@ const CreatePost = ({ posts, setPosts }) => {
           },
         })
           .then(function (response) {
-            // const data = response.data;
             console.log(response)
-            // setPosts([data, ...posts]);
+
+            async function fetchPost() {
+              const getAllPosts = {
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}api/posts`,
+                headers: { 'Authorization': `Bearer ${token}` }
+              }
+              let res = await axios(getAllPosts)
+              console.log(res.data)
+              if (res.status === 200) {
+                const sortedPost = res.data.sort((a, b) => {
+                  return new Date(b.createdAt) - new Date(a.createdAt)
+                })
+                return setPosts(sortedPost)
+              }
+            }
+            fetchPost();
             setInput("");
           })
           .catch(function (error) {
