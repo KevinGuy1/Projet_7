@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const createError = require("http-errors");
 const PostModel = require("../models/post");
 const fs = require("fs");
+const { Console } = require("console");
 
 exports.getAllPosts = (req, res, next) => {
   // on récupère l'ensemble des données avec find qui renvoie un changement de status et la réponse
@@ -40,9 +41,10 @@ module.exports.createPost = asyncHandler(async (req, res, next) => {
 });
 
 exports.modifyPost = async (req, res, next) => {
+  console.log(req.body.post)
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.userId === req.auth.userId) {
+      if (post.userId === req.auth.userId || req.auth.role === "admin") {
         if (req.file) {
           Post.findOne({ _id: req.params.id })
             .then((post) => {
@@ -65,6 +67,7 @@ exports.modifyPost = async (req, res, next) => {
             // Sinon on mets à jour les données du produit --------------------------------------
           }
           : { ...req.body };
+        console.log(postObject)
         Post.updateOne(
           { _id: req.params.id },
           { ...postObject, _id: req.params.id }
@@ -79,8 +82,8 @@ exports.modifyPost = async (req, res, next) => {
 exports.deletePost = (req, res, next) => {
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      // Si userId de la BDD = userId du token
-      if (post.userId === req.auth.userId) {
+      // Si userId de la BDD = userId du token ou si l'utilisateur a un role admin
+      if (post.userId === req.auth.userId || req.auth.role === "admin") {
         // On supprime l'image et l'url associe au produit
         const filename = post.imageUrl.split("/images/")[1];
         fs.unlink(`images/${filename}`, () => {

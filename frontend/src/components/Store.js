@@ -5,5 +5,6 @@ export const userStore = create(devtools(set => ({
     pseudo: '',
     userId: '',
     token: '',
-    setCurrentUser: (pseudo, userId, token) => set({ pseudo, userId, token }),
+    role: '',
+    setCurrentUser: (pseudo, userId, token, role) => set({ pseudo, userId, token, role }),
 })))

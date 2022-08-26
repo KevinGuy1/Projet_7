@@ -14,6 +14,7 @@ const CreatePost = ({ posts, setPosts }) => {
 
   const handleImg = (e) => {
     setImage(e.target.files[0]);
+    console.log(image)
   };
 
   const handleChange = (e) => {
@@ -23,88 +24,87 @@ const CreatePost = ({ posts, setPosts }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   if (input) {
-    //     const post = new FormData();
-    //     post.append('pseudo', pseudo);
-    //     post.append('userId', userId);
-    //     post.append('message', input);
-    //     // if (image) image.append("image", image);
-
-    //     await axios({
-    //       method: "post",
-    //       url: `${process.env.REACT_APP_API_URL}api/posts`,
-    //       body: post,
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //         "Content-Type": "application/json",
-    //       },
-
-    //     })
-    //       .then(function (response) {
-    //         //handle success
-    //         console.log(response);
-    //       })
-    //       .catch(function (response) {
-    //         //handle error
-    //         console.log(response);
-    //       });
-    //     console.log(post)
-    //     setPosts([post, ...posts]);
-    //   } else {
-    //     alert("Veuillez entrer un message")
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
-
     try {
-      if (token) {
-        const submitPost = await axios({
-          method: "POST",
-          url: `${process.env.REACT_APP_API_URL}api/posts`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          data: {
-            post: JSON.stringify({
-              pseudo: pseudo,
-              userId: userId,
-              message: input,
-              // image: image
-            })
-          },
-        })
-          .then(function (response) {
-            console.log(response)
+      if (input) {
+        const post = new FormData();
+        post.append('pseudo', pseudo);
+        post.append('userId', userId);
+        post.append('message', input);
+        if (image)
 
-            async function fetchPost() {
-              const getAllPosts = {
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}api/posts`,
-                headers: { 'Authorization': `Bearer ${token}` }
-              }
-              let res = await axios(getAllPosts)
-              console.log(res.data)
-              if (res.status === 200) {
-                const sortedPost = res.data.sort((a, b) => {
-                  return new Date(b.createdAt) - new Date(a.createdAt)
-                })
-                return setPosts(sortedPost)
-              }
-            }
-            fetchPost();
-            setInput("");
+          await axios({
+            method: "post",
+            url: `${process.env.REACT_APP_API_URL}api/posts`,
+            data: post,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+
           })
-          .catch(function (error) {
-            console.log(error);
-          });
-
+            .then(function (response) {
+              //handle success
+              console.log(response + "envoie reussi");
+            })
+            .catch(function (response) {
+              //handle error
+              console.log(response);
+            });
+        console.log(post)
+        setPosts([post, ...posts]);
+      } else {
+        alert("Veuillez entrer un message")
       }
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
+  //   try {
+  //     if (token) {
+  //       await axios({
+  //         method: "POST",
+  //         url: `${process.env.REACT_APP_API_URL}api/posts`,
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //         data: {
+  //           post: JSON.stringify({
+  //             pseudo: pseudo,
+  //             userId: userId,
+  //             message: input,
+  //             image: image,
+  //           })
+  //         },
+  //       })
+  //         .then(function (response) {
+  //           console.log(response)
+
+  //           async function fetchPost() {
+  //             const getAllPosts = {
+  //               method: 'get',
+  //               url: `${process.env.REACT_APP_API_URL}api/posts`,
+  //               headers: { 'Authorization': `Bearer ${token}` }
+  //             }
+  //             let res = await axios(getAllPosts)
+  //             console.log(res.data)
+  //             if (res.status === 200) {
+  //               const sortedPost = res.data.sort((a, b) => {
+  //                 return new Date(b.createdAt) - new Date(a.createdAt)
+  //               })
+  //               return setPosts(sortedPost)
+  //             }
+  //           }
+  //           fetchPost();
+  //           setInput("");
+  //         })
+  //         .catch(function (error) {
+  //           console.log(error);
+  //         });
+
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
 
   return (

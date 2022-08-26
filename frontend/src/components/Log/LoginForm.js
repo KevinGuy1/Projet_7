@@ -31,7 +31,7 @@ const SignInForm = () => {
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          setCurrentUser(res.data.pseudo, res.data.userId, res.data.token);
+          setCurrentUser(res.data.pseudo, res.data.userId, res.data.token, res.data.role);
           const maxAge = 60 * 60 * 1000;
           const cookies = new Cookies();
           cookies.set('token', res.data.token, { httpOnly: false }, maxAge);

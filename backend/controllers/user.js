@@ -17,6 +17,7 @@ exports.signup = (req, res, next) => {
         pseudo: req.body.pseudo,
         email: req.body.email,
         password: hash,
+        role: "user",
       });
       // On sauvegarde l'utilisateur et on renvoie
       user
@@ -44,13 +45,14 @@ exports.login = (req, res, next) => {
             return res.status(401).json({ error: "Mot de passe incorrect !" });
           }
           // Si il est valide on renvoie l'identifiant avec un token de connexion
-          const token = jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+          const token = jwt.sign({ userId: user._id, role: user.role }, "RANDOM_TOKEN_SECRET", {
             expiresIn: maxAge
           });
           res.status(200).json({
             pseudo: user.pseudo,
             userId: user._id,
             token,
+            role: user.role,
           });
         })
         .catch((error) => res.status(500).json({ error }));

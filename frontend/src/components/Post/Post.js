@@ -12,6 +12,8 @@ const Post = ({ post, setPosts }) => {
   const [textUpdate, setTextUpdate] = useState(null);
   const pseudo = userStore((state) => state.pseudo);
   const userId = userStore((state) => state.userId);
+  const role = userStore((state) => state.role);
+
   const token = Cookies.get('token');
 
   const updateItem = () => {
@@ -80,7 +82,7 @@ const Post = ({ post, setPosts }) => {
         <img src={post.imageUrl} alt="post-img" className="post-img" />
       )}
       {/* Si c'est notre post alors apparition de 2 boutons (modif et delete) */}
-      {userId === post.userId && (
+      {(userId === post.userId || role === "admin") && (
         <div className="button-container">
           <div onClick={() => setIsUpdated(!isUpdated)}>
             <img src="./img/icons/edit.svg" alt="edit" />
