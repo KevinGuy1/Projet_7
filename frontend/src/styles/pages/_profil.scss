@@ -46,6 +46,7 @@
         }
         .active-btn {
           background: $color-1;
+          color: $color-2;
         }
         li:not(.active-btn) {
           &:hover {

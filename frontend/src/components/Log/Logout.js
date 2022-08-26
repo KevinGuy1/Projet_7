@@ -10,9 +10,7 @@ const Logout = () => {
   }
 
   return (
-    <li onClick={logout}>
-      <h5>Deconnexion</h5>
-    </li>
+    <li className="logout"><h5 onClick={logout}>Deconnexion</h5></li>
   );
 
 };

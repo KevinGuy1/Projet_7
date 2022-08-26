@@ -32,13 +32,14 @@ nav {
     align-items: center;
     
     .logo {
-      display: flex;
-      align-items: center;
-      
+      display: flex;      
       img {
         height: 50px;
-        width: 300px;
+        width: 250px;
         object-fit: cover;
+        @media screen and(max-width: 500px) {
+        
+        }
       }
     }
     
@@ -46,24 +47,25 @@ nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 300px;
+      width: 40%;
       justify-content: space-between;
       font-size: 1.2rem;
-      
+      @media screen and(max-width: 590px) {
+        justify-content: flex-end;
+      }
       .welcome {
-        transform: translateY(2px);
-
         @media screen and(max-width: 590px) {
           display: none;
-        }
-        
+        }  
         h5 {
           font-family: $font-1;
         }
       }
+      .logout{
+        cursor: pointer;
+      }
       
       li {
-        
         img {
           height: 24px;
           width: 24px;

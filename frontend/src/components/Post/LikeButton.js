@@ -74,7 +74,7 @@ const LikeButton = ({ post }) => {
     }, [userId, post.usersLiked]);
 
     return (
-        <div className="like-container">
+        <div>
             {liked === false && (
                 <img src="./img/icons/heart.svg" onClick={like} alt="like" />
             )}
