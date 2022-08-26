@@ -18,43 +18,44 @@ const Post = ({ post, setPosts }) => {
 
   const updateItem = () => {
     if (textUpdate) {
+      let formData = new FormData();
+      formData.append("post", JSON.stringify({
+        message: textUpdate,
+      })
+      );
       axios({
         method: "PUT",
         url: `${process.env.REACT_APP_API_URL}api/posts/${post._id}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        data: {
-          post: JSON.stringify({
-            pseudo: pseudo,
-            userId: userId,
-            message: textUpdate,
-            // image: post.imageURL
-          })
-        },
+        data: formData,
       })
-      console.log("message mis à jour avec succès")
+        .then(function (response) {
+          console.log(response);
+          async function fetchPost() {
+            const getAllPosts = {
+              method: 'get',
+              url: `${process.env.REACT_APP_API_URL}api/posts`,
+              headers: { 'Authorization': `Bearer ${token}` }
+            }
+            let res = await axios(getAllPosts)
+            console.log(res.data)
+            if (res.status === 200) {
+              const sortedPost = res.data.sort((a, b) => {
+                return new Date(b.createdAt) - new Date(a.createdAt)
+              })
+              return setPosts(sortedPost)
+            }
+          }
+          fetchPost();
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
     }
     setIsUpdated(false);
-    // Actualisation du GET
-    async function fetchPost() {
-      const getAllPosts = {
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}api/posts`,
-        headers: { 'Authorization': `Bearer ${token}` }
-      }
-      let res = await axios(getAllPosts)
-      console.log(res.data)
-      if (res.status === 200) {
-        const sortedPost = res.data.sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt)
-        })
-        return setPosts(sortedPost)
-      }
-    }
-    fetchPost();
-  };
-
+  }
   return (
     <div className="post-container" key={post._id}>
       {/* pseudo + date */}

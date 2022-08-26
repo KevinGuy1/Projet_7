@@ -18,10 +18,10 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 module.exports.createPost = asyncHandler(async (req, res, next) => {
-  console.log(req.body.post)
   if (!req.body.post) return next(createError(400, "missing post param"));
   // On récupère les données au bon format
   const postObject = JSON.parse(req.body.post);
+  console.log("creation : " + JSON.stringify(postObject));
   // Création du produit
   const newpost = new PostModel({
     ...postObject,
@@ -41,34 +41,13 @@ module.exports.createPost = asyncHandler(async (req, res, next) => {
 });
 
 exports.modifyPost = async (req, res, next) => {
-  console.log(req.body.post)
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
       if (post.userId === req.auth.userId || req.auth.role === "admin") {
-        if (req.file) {
-          Post.findOne({ _id: req.params.id })
-            .then((post) => {
-              console.log("image delete");
-              // On supprime l'image et l'url associe au produit
-              const filename = post.imageUrl.split("/images/")[1];
-              fs.unlinkSync(`images/${filename}`);
-            })
-            .catch((error) => res.status(404).json({ error }));
-        } else {
-          console.log("Pas de fichier dans la requete");
-        }
-        const postObject = req.file
-          ? {
-            // Si il y a un fichier image dans la requête ----------------------------------
-            // On récupère les données de la requête et on génère un nouvel url
-            ...JSON.parse(req.body.post),
-            imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename
-              }`,
-            // Sinon on mets à jour les données du produit --------------------------------------
-          }
-          : { ...req.body };
-        console.log(postObject)
-        Post.updateOne(
+        const postObject = { ...JSON.parse(req.body.post) };
+        console.log("postObject : " + JSON.stringify(postObject))
+
+        PostModel.updateOne(
           { _id: req.params.id },
           { ...postObject, _id: req.params.id }
         )
