@@ -5,6 +5,9 @@ const Logout = () => {
 
   const logout = () => {
     Cookies.remove('token')
+    Cookies.remove('pseudo')
+    Cookies.remove('role')
+    Cookies.remove('userId')
     console.log("cookie supprimé")
     window.location = "/connexion";
   }

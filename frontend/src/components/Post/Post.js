@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { dateParser } from "../Utils";
-import { userStore } from "../Store";
+// import { userStore } from "../Store";
 import DeletePost from "./DeletePost";
 import LikeButton from "./LikeButton";
 import axios from "axios";
@@ -10,11 +10,14 @@ import Cookies from 'js-cookie';
 const Post = ({ post, setPosts }) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
-  const pseudo = userStore((state) => state.pseudo);
-  const userId = userStore((state) => state.userId);
-  const role = userStore((state) => state.role);
 
   const token = Cookies.get('token');
+  const userId = Cookies.get("userId");
+  const role = Cookies.get("role");
+
+  // const userId = userStore((state) => state.userId);
+  // const role = userStore((state) => state.role);
+
 
   const updateItem = () => {
     if (textUpdate) {

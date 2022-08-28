@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { userStore } from "../Store";
+// import { userStore } from "../Store";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const CreatePost = ({ posts, setPosts }) => {
   const token = Cookies.get("token");
-  const userId = userStore((state) => state.userId);
-  const pseudo = userStore((state) => state.pseudo);
+  const userId = Cookies.get("userId");
+  const pseudo = Cookies.get("pseudo");
+
+  // const userId = userStore((state) => state.userId);
+  // const pseudo = userStore((state) => state.pseudo);
+
   const [input, setInput] = useState("");
   const [image, setImage] = useState({ preview: "", data: "" });
   const handleSubmit = async (e) => {

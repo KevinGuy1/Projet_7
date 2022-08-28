@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { userStore } from "../Store";
-import { useNavigate } from "react-router-dom";
+// import { userStore } from "../Store";
 import Cookies from 'universal-cookie';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setCurrentUser } = userStore();
-  let navigate = useNavigate();
+  // const { setCurrentUser } = userStore();
 
 
   const handleLogin = (e) => {
@@ -25,17 +23,21 @@ const SignInForm = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.data.errors) {
           // TO DO backend faire l'envoie d'erreur
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
         } else {
-          setCurrentUser(res.data.pseudo, res.data.userId, res.data.token, res.data.role);
+          // setCurrentUser(res.data.pseudo, res.data.userId, res.data.token, res.data.role);
+
           const maxAge = 60 * 60 * 1000;
           const cookies = new Cookies();
           cookies.set('token', res.data.token, { httpOnly: false }, maxAge);
-          navigate("/");
+          cookies.set('pseudo', res.data.pseudo, { httpOnly: false }, maxAge);
+          cookies.set('userId', res.data.userId, { httpOnly: false }, maxAge);
+          cookies.set('role', res.data.role, { httpOnly: false }, maxAge);
+          window.location = "/";
+
         }
       })
       .catch((err) => {
