@@ -50,6 +50,7 @@ const CreatePost = ({ posts, setPosts }) => {
         }
         fetchPost();
         setInput("");
+        setImage({ preview: "", data: "" });
       })
       .catch(function (response) {
         console.log(response);

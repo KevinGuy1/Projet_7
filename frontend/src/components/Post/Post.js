@@ -57,7 +57,7 @@ const Post = ({ post, setPosts }) => {
     setIsUpdated(false);
   }
   return (
-    <div className="post-container" key={post._id}>
+    <div className="border-solid border-2 border-indigo-600" key={post._id}>
       {/* pseudo + date */}
       <div className="post-header">
         <h3>{post.pseudo}</h3>
