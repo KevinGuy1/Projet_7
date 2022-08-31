@@ -62,22 +62,22 @@ const Post = ({ post, setPosts }) => {
   return (
     <div className="bg-white border-solid border-2 border-secondary rounded-lg shadow-md shadow-secondary w-4/5 m-auto my-5" key={post._id}>
       {/* pseudo + date */}
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between w-11/12 m-auto py-3">
         <h3>{post.pseudo}</h3>
-        <span className="italic text-tertiary">{dateParser(post.createdAt)}</span>
+        <span className="italic">{dateParser(post.createdAt)}</span>
       </div>
       {/* message */}
-      {isUpdated === false && <p className="px-2">{post.message}</p>}
+      {isUpdated === false && <p className="w-11/12 m-auto">{post.message}</p>}
       {/* modif post */}
       {isUpdated && (
         <div >
           <textarea
-            className="border-solid border border-secondary p-2.5 rounded-xl resize-none focus:shadow-secondary focus:shadow-md focus:border-none focus-visible:outline-none"
+            className="w-full h-28 border-solid border border-secondary p-2.5 rounded-xl resize-none focus:shadow-secondary focus:shadow-md focus:border-none focus-visible:outline-none"
             defaultValue={post.message}
             onChange={(e) => setTextUpdate(e.target.value)}
           />
-          <div className="button-container">
-            <button className="btn" onClick={updateItem}>
+          <div className="flex justify-end px-2">
+            <button className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white hover:shadow-primary hover:shadow-sm" onClick={updateItem}>
               Valider modification
             </button>
           </div>
@@ -88,17 +88,20 @@ const Post = ({ post, setPosts }) => {
         <img src={post.imageUrl} alt="post-img" className="object-contain w-full max-h-80	p-2 rounded-xl" />
       )}
       {/* Si c'est notre post alors apparition de 2 boutons (modif et delete) */}
-      {(userId === post.userId || role === "admin") && (
-        <div className="button-container">
-          <div onClick={() => setIsUpdated(!isUpdated)}>
-            <img src="./img/icons/edit.svg" alt="edit" />
+      <div className="flex justify-end p-2 cursor-pointer">
+        {(userId === post.userId || role === "admin") && (
+          <div className="flex ">
+            <div onClick={() => setIsUpdated(!isUpdated)}>
+              <img className="w-8 h-8" src="./img/icons/edit.svg" alt="edit" />
+            </div>
+            <DeletePost id={post._id} setPosts={setPosts} />
           </div>
-          <DeletePost id={post._id} setPosts={setPosts} />
+        )}
+        <div>
+          <LikeButton post={post} />
         </div>
-      )}
-      <div className="like-container">
-        <LikeButton post={post} />
       </div>
+
     </div>
 
   )

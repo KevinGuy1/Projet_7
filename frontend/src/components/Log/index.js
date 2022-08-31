@@ -23,14 +23,14 @@ const Log = (props) => {
           <li
             onClick={handleModals}
             id="register"
-            className={signUpModal ? "bg-primary text-secondary rounded-xl mb-6 text-center px-2" : "mb-6 text-center px-2"}
+            className={signUpModal ? "bg-primary text-secondary rounded-xl mb-6 text-center px-2 shadow-primary shadow-sm" : "mb-6 text-center px-2"}
           >
             S'inscrire
           </li>
           <li
             onClick={handleModals}
             id="login"
-            className={loginModal ? "bg-primary text-secondary rounded-xl text-center px-2" : "text-center px-2 "}
+            className={loginModal ? "bg-primary text-secondary rounded-xl text-center px-2 shadow-primary shadow-sm" : "text-center px-2 "}
           >
             Se connecter
           </li>

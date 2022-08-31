@@ -12,6 +12,7 @@ module.exports = {
       'black': '#282828',
       'red': '#FF0000',
       'green': '#1AC100',
+      'current': 'currentColor',
     },
     fontFamily: {
       'sans': 'Lato'

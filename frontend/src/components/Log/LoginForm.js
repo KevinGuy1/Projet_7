@@ -72,7 +72,7 @@ const SignInForm = () => {
       <div className="password error"></div>
       <br />
       <input
-        className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
+        className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white hover:shadow-primary hover:shadow-sm"
         type="submit"
         value="Se connecter" />
     </form>

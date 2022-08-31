@@ -75,12 +75,12 @@ const LikeButton = ({ post }) => {
     }, [userId, post.usersLiked]);
 
     return (
-        <div>
+        <div className="flex red">
             {liked === false && (
-                <img src="./img/icons/heart.svg" onClick={like} alt="like" />
+                <img className="w-8 h-8" src="./img/icons/heart.svg" onClick={like} alt="like" />
             )}
             {liked && (
-                <img src="./img/icons/heart-filled.svg" onClick={unlike} alt="unlike" />
+                <img className="w-8 h-8" src="./img/icons/heart-filled.svg" onClick={unlike} alt="unlike" />
             )}
             <span>{count}</span>
         </div>

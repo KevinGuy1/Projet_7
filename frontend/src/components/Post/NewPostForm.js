@@ -89,27 +89,27 @@ const CreatePost = ({ posts, setPosts }) => {
           required
           placeholder={`Quoi de neuf ?`}
         />
-        <div className="w-11/12 m-auto flex justify-between items-center">
+        <div className="w-11/12 m-auto flex justify-between">
           {/* item center */}
-          <div className="relative">
+          <div className="relative flex">
             <img className="" src="./img/icons/picture.svg" alt="icons-img" />
             <input
-              className="w-10 h-10 rounded-full opacity-0 absolute top-0"
+              className="w-10 h-10 rounded-full opacity-0 absolute"
               type="file"
               id="file-upload"
               name="file"
               accept=".jpg, .jpeg, .png"
               onChange={handleFileChange}
             />
+            {image.preview ? (
+              <img
+                className="w-12 h-12 p-2 object-cover"
+                src={image.preview} alt="preview" />
+            ) : null}
           </div>
-          {image.preview ? (
-            <img
-              // style={{ width: "50px" }} 
-              src={image.preview} alt="preview" />
-          ) : null}
           <div className="flex justify-end py-2">
             <button
-              className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
+              className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white hover:shadow-primary hover:shadow-sm"
               type="submit"
             >
               Envoyer

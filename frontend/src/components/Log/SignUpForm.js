@@ -125,7 +125,7 @@ const SignUpForm = () => {
           </label>
           <div className="terms error text-red"></div>
           <br />
-          <input className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white" type="submit" value="Valider inscription" />
+          <input className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white hover:shadow-primary hover:shadow-sm" type="submit" value="Valider inscription" />
         </form>
       )}
     </>

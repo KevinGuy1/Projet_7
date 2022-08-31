@@ -50,7 +50,7 @@ const DeletePost = ({ id, setPosts }) => {
                 }
             }}
         >
-            <img src="./img/icons/trash.svg" alt="Supprimer" />
+            <img className="w-8 h-8" src="./img/icons/trash.svg" alt="Supprimer" />
         </div>
     );
 };

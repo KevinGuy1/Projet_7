@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // Importation de la route du model
-const User = require("../models/User");
+const User = require("../models/user");
 
 
 const maxAge = 24 * 60 * 60;
