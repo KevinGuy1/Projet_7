@@ -13,6 +13,9 @@ module.exports = {
       'red': '#FF0000',
       'green': '#1AC100',
     },
+    fontFamily: {
+      'sans': 'Lato'
+    },
   },
   plugins: [],
 }

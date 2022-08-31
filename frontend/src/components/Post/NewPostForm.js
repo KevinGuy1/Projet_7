@@ -75,13 +75,13 @@ const CreatePost = ({ posts, setPosts }) => {
   };
 
   return (
-    <div className="m-auto  w-4/5 bg-secondary rounded-xl shadow-secondary shadow-lg">
-      <div className="p-3">
+    <div className="w-4/5 m-auto bg-secondary rounded-xl shadow-secondary shadow-md ">
+      <div className="text-lg text-center py-3 px-5">
         <h2>{pseudo}</h2>
       </div>
-      <form className="" onSubmit={handleSubmit}>
+      <form className="w-full" onSubmit={handleSubmit}>
         <textarea
-          className="w-full mx-3 px-3 py-2 h-16 rounded-lg resize-none"
+          className="w-11/12 block m-auto px-2 py-2 h-16 rounded-lg resize-none focus-visible:outline-none"
           name="input"
           value={input}
           onChange={handleChange}
@@ -89,17 +89,12 @@ const CreatePost = ({ posts, setPosts }) => {
           required
           placeholder={`Quoi de neuf ?`}
         />
-        <div
-          className=""
-        // style={{
-        //   display: "flex",
-        //   alignItems: "center",
-        // }}
-        >
+        <div className="w-11/12 m-auto flex justify-between items-center">
+          {/* item center */}
           <div className="relative">
-            <img className="absolute" src="./img/icons/picture.svg" alt="icons-img" />
+            <img className="" src="./img/icons/picture.svg" alt="icons-img" />
             <input
-              className="w-10 h-10 rounded-full absolute opacity-0"
+              className="w-10 h-10 rounded-full opacity-0 absolute top-0"
               type="file"
               id="file-upload"
               name="file"
@@ -112,13 +107,15 @@ const CreatePost = ({ posts, setPosts }) => {
               // style={{ width: "50px" }} 
               src={image.preview} alt="preview" />
           ) : null}
+          <div className="flex justify-end py-2">
+            <button
+              className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
+              type="submit"
+            >
+              Envoyer
+            </button>
+          </div>
         </div>
-        <button
-          className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
-          type="submit"
-        >
-          Envoyer
-        </button>
       </form>
     </div>
   );

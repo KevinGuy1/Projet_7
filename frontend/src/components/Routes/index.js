@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 
 const index = () => {
   return (
-    <div>
+    <div className="text-tertiary font-sans">
       <Router>
         <Navbar />
         <Routes>

@@ -31,7 +31,7 @@ const Thread = () => {
 
 
   return (
-    <div className="pt-14">
+    <div className="pt-14 w-full flex-col justify-center">
       <NewPostForm posts={posts} setPosts={setPosts} />
       {posts.map((post) => (
         <Post key={post._id} post={post} setPosts={setPosts} />
