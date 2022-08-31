@@ -13,7 +13,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="fixed w-full h-12 rounded shadow-sm shadow-primary after:backdrop-blur after:abolute after:h-12 after:w-full after: after:top-0 " >
+    <nav className="fixed z-10 bg-white w-full h-12 rounded shadow-sm shadow-primary after:backdrop-blur after:abolute after:h-12 after:w-full after: after:top-0 " >
       <div className="flex justify-between h-12 ">
         <div className="">
           <NavLink exact to="/">
