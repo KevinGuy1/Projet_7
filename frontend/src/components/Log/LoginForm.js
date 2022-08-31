@@ -46,10 +46,11 @@ const SignInForm = () => {
   };
 
   return (
-    <form className="w-4/6 py-4" action="" onSubmit={handleLogin}>
+    <form className="w-2/3 py-4" action="" onSubmit={handleLogin}>
       <label htmlFor="email">Email</label>
       <br />
       <input
+        className="rounded-xl pl-2 focus-visible:outline-none"
         type="text"
         name="email"
         id="email"
@@ -61,6 +62,7 @@ const SignInForm = () => {
       <label htmlFor="password">Mot de passe</label>
       <br />
       <input
+        className="rounded-xl pl-2 focus-visible:outline-none"
         type="password"
         name="password"
         id="password"

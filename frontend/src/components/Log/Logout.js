@@ -13,7 +13,7 @@ const Logout = () => {
   }
 
   return (
-    <li className="logout"><h5 onClick={logout}>Deconnexion</h5></li>
+    <li className="px-3 cursor-pointer hover:scale-105 hover:duration-100"><h5 onClick={logout}>Deconnexion</h5></li>
   );
 
 };

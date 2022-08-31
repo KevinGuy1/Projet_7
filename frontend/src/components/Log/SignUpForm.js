@@ -58,17 +58,20 @@ const SignUpForm = () => {
     <>
       {formSubmit ? (
         <>
-          <SignInForm />
-          <span></span>
-          <h4 className="text-green">
-            Enregistrement réussi, veuillez-vous connecter
-          </h4>
+          <div className="flex-col">
+            <SignInForm />
+            <span></span>
+            <h4 className="text-green">
+              Enregistrement réussi, veuillez-vous connecter
+            </h4>
+          </div>
         </>
       ) : (
-        <form action="" onSubmit={handleRegister} id="sign-up-form">
+        <form className="w-4/6 py-4 px-5" action="" onSubmit={handleRegister} id="sign-up-form">
           <label htmlFor="pseudo">Pseudo</label>
           <br />
           <input
+            className="rounded-xl pl-2 focus-visible:outline-none"
             type="text"
             name="pseudo"
             id="pseudo"
@@ -80,6 +83,7 @@ const SignUpForm = () => {
           <label htmlFor="email">Email</label>
           <br />
           <input
+            className="rounded-xl pl-2 focus-visible:outline-none"
             type="text"
             name="email"
             id="email"
@@ -91,6 +95,7 @@ const SignUpForm = () => {
           <label htmlFor="password">Mot de passe</label>
           <br />
           <input
+            className="rounded-xl pl-2 focus-visible:outline-none"
             type="password"
             name="password"
             id="password"
@@ -102,6 +107,7 @@ const SignUpForm = () => {
           <label htmlFor="password-conf">Confirmer mot de passe</label>
           <br />
           <input
+            className="rounded-xl pl-2 focus-visible:outline-none"
             type="password"
             name="password"
             id="password-conf"
@@ -119,7 +125,7 @@ const SignUpForm = () => {
           </label>
           <div className="terms error text-red"></div>
           <br />
-          <input type="submit" value="Valider inscription" />
+          <input className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white" type="submit" value="Valider inscription" />
         </form>
       )}
     </>

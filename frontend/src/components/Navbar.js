@@ -29,8 +29,8 @@ const Navbar = () => {
         {token
           // Si token afficher bienvenue et deco sinon null
           ? (
-            <ul>
-              <li className="welcome">
+            <ul className="flex items-center">
+              <li className="px-3 hidden sm:block">
                 <h5>Bienvenue {pseudo} !!</h5>
               </li>
               <Logout />

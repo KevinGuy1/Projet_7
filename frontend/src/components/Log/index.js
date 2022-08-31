@@ -18,7 +18,7 @@ const Log = (props) => {
 
   return (
     <div className="w-full pt-20">
-      <div className="flex m-auto w-2/4 bg-secondary rounded-2xl">
+      <div className="flex m-auto max-w-[450px] min-w-[360px] bg-secondary rounded-2xl shadow-secondary shadow-md">
         <ul className="w-1/3 px-5 py-4">
           <li
             onClick={handleModals}
