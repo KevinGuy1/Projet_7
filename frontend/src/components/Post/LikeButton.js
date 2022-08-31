@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { userStore } from "../Store";
+// import { userStore } from "../Store";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
@@ -7,8 +7,9 @@ import Cookies from 'js-cookie';
 const LikeButton = ({ post }) => {
     const [count, setCount] = useState(post.likes)
     const [liked, setLiked] = useState(false);
-    const userId = userStore((state) => state.userId);
     const token = Cookies.get('token');
+    const userId = Cookies.get('userId');
+    // const userId = userStore((state) => state.userId);
 
     const like = () => {
         try {

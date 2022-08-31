@@ -60,17 +60,19 @@ const Post = ({ post, setPosts }) => {
     setIsUpdated(false);
   }
   return (
-    <div className="border-solid border-2 border-indigo-600" key={post._id}>
+    <div className="bg-white border-solid border-2 border-secondary rounded-lg shadow-md shadow-secondary w-4/5 m-auto my-5" key={post._id}>
       {/* pseudo + date */}
-      <div className="post-header">
+      <div className="flex justify-between p-2">
         <h3>{post.pseudo}</h3>
-        <span>{dateParser(post.createdAt)}</span>
+        <span className="italic text-tertiary">{dateParser(post.createdAt)}</span>
       </div>
       {/* message */}
-      {isUpdated === false && <p>{post.message}</p>}
+      {isUpdated === false && <p className="px-2">{post.message}</p>}
+      {/* modif post */}
       {isUpdated && (
-        <div className="update-post">
+        <div >
           <textarea
+            className="border-solid border border-secondary p-2.5 rounded-xl resize-none focus:shadow-secondary focus:shadow-md focus:border-none focus-visible:outline-none"
             defaultValue={post.message}
             onChange={(e) => setTextUpdate(e.target.value)}
           />
@@ -83,7 +85,7 @@ const Post = ({ post, setPosts }) => {
       )}
       {/* Image */}
       {post.imageUrl && (
-        <img src={post.imageUrl} alt="post-img" className="post-img" />
+        <img src={post.imageUrl} alt="post-img" className="object-contain w-full max-h-80	p-2 rounded-xl" />
       )}
       {/* Si c'est notre post alors apparition de 2 boutons (modif et delete) */}
       {(userId === post.userId || role === "admin") && (

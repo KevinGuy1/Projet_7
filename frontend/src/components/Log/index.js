@@ -17,20 +17,20 @@ const Log = (props) => {
   };
 
   return (
-    <div className="connection-form">
-      <div className="form-container">
-        <ul>
+    <div className="w-full pt-20">
+      <div className="flex m-auto w-2/4 bg-secondary rounded-2xl">
+        <ul className="w-1/3 px-5 py-4">
           <li
             onClick={handleModals}
             id="register"
-            className={signUpModal ? "active-btn" : null}
+            className={signUpModal ? "bg-primary text-secondary rounded-xl mb-6 text-center px-2" : "mb-6 text-center px-2"}
           >
             S'inscrire
           </li>
           <li
             onClick={handleModals}
             id="login"
-            className={loginModal ? "active-btn" : null}
+            className={loginModal ? "bg-primary text-secondary rounded-xl text-center px-2" : "text-center px-2 "}
           >
             Se connecter
           </li>

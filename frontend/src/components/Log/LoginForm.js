@@ -46,7 +46,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form action="" onSubmit={handleLogin} id="sign-up-form">
+    <form className="w-4/6 py-4" action="" onSubmit={handleLogin}>
       <label htmlFor="email">Email</label>
       <br />
       <input
@@ -69,7 +69,10 @@ const SignInForm = () => {
       />
       <div className="password error"></div>
       <br />
-      <input type="submit" value="Se connecter" />
+      <input
+        className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
+        type="submit"
+        value="Se connecter" />
     </form>
   );
 };

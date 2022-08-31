@@ -60,7 +60,7 @@ const SignUpForm = () => {
         <>
           <SignInForm />
           <span></span>
-          <h4 className="success">
+          <h4 className="text-green">
             Enregistrement réussi, veuillez-vous connecter
           </h4>
         </>
@@ -108,7 +108,7 @@ const SignUpForm = () => {
             onChange={(e) => setControlPassword(e.target.value)}
             value={controlPassword}
           />
-          <div className="password-confirm error"></div>
+          <div className="password-confirm error text-red"></div>
           <br />
           <input type="checkbox" id="terms" />
           <label htmlFor="terms">
@@ -117,7 +117,7 @@ const SignUpForm = () => {
               conditions générales
             </a>
           </label>
-          <div className="terms error"></div>
+          <div className="terms error text-red"></div>
           <br />
           <input type="submit" value="Valider inscription" />
         </form>

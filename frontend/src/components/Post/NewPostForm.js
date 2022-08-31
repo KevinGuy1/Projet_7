@@ -75,12 +75,13 @@ const CreatePost = ({ posts, setPosts }) => {
   };
 
   return (
-    <div className="createPost">
-      <div className="pseudo">
+    <div className="m-auto  w-4/5 bg-secondary rounded-xl shadow-secondary shadow-lg">
+      <div className="p-3">
         <h2>{pseudo}</h2>
       </div>
-      <form className="post-form" onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <textarea
+          className="w-full mx-3 px-3 py-2 h-16 rounded-lg resize-none"
           name="input"
           value={input}
           onChange={handleChange}
@@ -89,14 +90,16 @@ const CreatePost = ({ posts, setPosts }) => {
           placeholder={`Quoi de neuf ?`}
         />
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
+          className=""
+        // style={{
+        //   display: "flex",
+        //   alignItems: "center",
+        // }}
         >
-          <div className="img-upload">
-            <img src="./img/icons/picture.svg" alt="icons-img" />
+          <div className="relative">
+            <img className="absolute" src="./img/icons/picture.svg" alt="icons-img" />
             <input
+              className="w-10 h-10 rounded-full absolute opacity-0"
               type="file"
               id="file-upload"
               name="file"
@@ -105,11 +108,13 @@ const CreatePost = ({ posts, setPosts }) => {
             />
           </div>
           {image.preview ? (
-            <img style={{ width: "50px" }} src={image.preview} alt="preview" />
+            <img
+              // style={{ width: "50px" }} 
+              src={image.preview} alt="preview" />
           ) : null}
         </div>
         <button
-          className="btn-send"
+          className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white"
           type="submit"
         >
           Envoyer

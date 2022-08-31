@@ -13,12 +13,13 @@ const Navbar = () => {
 
 
   return (
-    <nav>
-      <div className="nav-container">
-        <div className="logo">
+    <nav className="fixed w-full h-12 rounded shadow-sm shadow-primary after:backdrop-blur after:abolute after:h-12 after:w-full after: after:top-0 " >
+      <div className="flex justify-between h-12 ">
+        <div className="">
           <NavLink exact to="/">
-            <div className="logo">
+            <div>
               <img
+                className="h-12 w-64 object-cover"
                 src="./Groupomania Logos/icon-left-font.png"
                 alt="logo Groupomania"
               />

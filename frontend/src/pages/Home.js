@@ -12,7 +12,7 @@ const Home = () => {
   }, [navigate, token]);
 
   return (
-    <div className="home">
+    <div className="bg-tertiary bg-opacity-5">
       <Thread />
     </div>
   );
