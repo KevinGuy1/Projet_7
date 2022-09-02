@@ -77,7 +77,7 @@ const CreatePost = ({ posts, setPosts }) => {
   return (
     <div className="w-4/5 m-auto bg-secondary rounded-xl shadow-secondary shadow-md ">
       <div className="text-lg text-center py-3 px-5">
-        <h2>{pseudo}</h2>
+        <h2 className="font-bold">{pseudo}</h2>
       </div>
       <form className="w-full" onSubmit={handleSubmit}>
         <textarea

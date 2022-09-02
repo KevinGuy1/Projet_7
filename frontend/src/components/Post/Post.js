@@ -63,7 +63,7 @@ const Post = ({ post, setPosts }) => {
     <div className="bg-white border-solid border-2 border-secondary rounded-lg shadow-md shadow-secondary w-4/5 m-auto my-5" key={post._id}>
       {/* pseudo + date */}
       <div className="flex justify-between w-11/12 m-auto py-3">
-        <h3>{post.pseudo}</h3>
+        <h3 className="font-bold">{post.pseudo}</h3>
         <span className="italic">{dateParser(post.createdAt)}</span>
       </div>
       {/* message */}
