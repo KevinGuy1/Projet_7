@@ -34,7 +34,7 @@ exports.login = (req, res, next) => {
     .then((user) => {
       // Si il n'existe pas on retourne un status 401
       if (!user) {
-        return res.status(401).json({ error: "Utilisateur non trouvé !" });
+        return res.status(401).json({ error: 'Mot de passe ou utilisateur incorrect !' });
       }
       // Sinon on compare le mdp
       bcrypt
@@ -42,7 +42,7 @@ exports.login = (req, res, next) => {
         .then((valid) => {
           // Si le mdp n'est pas valide on retourne un status 401
           if (!valid) {
-            return res.status(401).json({ error: "Mot de passe incorrect !" });
+            return res.status(401).json({ error: 'Mot de passe ou utilisateur incorrect !' });
           }
           // Si il est valide on renvoie l'identifiant avec un token de connexion
           const token = jwt.sign({ userId: user._id, role: user.role }, "RANDOM_TOKEN_SECRET", {

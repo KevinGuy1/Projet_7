@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SignInForm from "./LoginForm";
 
+
 const SignUpForm = () => {
   const [formSubmit, setFormSubmit] = useState(false);
   const [pseudo, setPseudo] = useState("");
@@ -15,9 +16,7 @@ const SignUpForm = () => {
     const pseudoError = document.querySelector(".pseudo.error");
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
-    const passwordConfirmError = document.querySelector(
-      ".password-confirm.error"
-    );
+    const passwordConfirmError = document.querySelector(".password-confirm.error");
     const termsError = document.querySelector(".terms.error");
 
     passwordConfirmError.innerHTML = "";

@@ -23,10 +23,11 @@ const SignInForm = () => {
       },
     })
       .then((res) => {
-        if (res.data.errors) {
-          // TO DO backend faire l'envoie d'erreur
-          emailError.innerHTML = res.data.errors.email;
-          passwordError.innerHTML = res.data.errors.password;
+        if (res.data.error) {
+          // TO DO backend faire l'envoie d'erreur avec un statut 200 ?
+
+          // emailError.innerHTML = res.data.errors.email;
+          // passwordError.innerHTML = res.data.errors.password;
         } else {
           // setCurrentUser(res.data.pseudo, res.data.userId, res.data.token, res.data.role);
 
@@ -41,7 +42,9 @@ const SignInForm = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
+        passwordError.innerHTML = "Mot de passe ou utilisateur incorrect !";
+        emailError.innerHTML = "Mot de passe ou utilisateur incorrect !";
       });
   };
 
@@ -57,7 +60,7 @@ const SignInForm = () => {
         onChange={(e) => setEmail(e.target.value)}
         value={email}
       />
-      <div className="email error"></div>
+      <div className="email error text-red"></div>
       <br />
       <label htmlFor="password">Mot de passe</label>
       <br />
@@ -69,7 +72,7 @@ const SignInForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <div className="password error"></div>
+      <div className="password error text-red"></div>
       <br />
       <input
         className="bg-secondary rounded-2xl px-3 py-1 hover:bg-primary hover:text-white hover:shadow-primary hover:shadow-sm"
